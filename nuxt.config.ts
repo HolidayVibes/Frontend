@@ -13,6 +13,13 @@ export default defineNuxtConfig({
         },
       ],
     },
+    baseURL: "holiday-vibe",
+  },
+  nitro: {
+    preset: "github-pages",
+    prerender: {
+      routes: ["/"],
+    },
   },
   modules: [
     "@nuxt/eslint",
