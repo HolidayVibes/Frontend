@@ -1,10 +1,11 @@
 <template>
   <div class="min-h-screen flex flex-col">
     <Header />
-    <span class="border-b-2 border-neutral-400/20" />
     <div class="main-content flex-grow">
       <slot></slot>
     </div>
+    <span class="border-b-2 border-neutral-400/20" />
+    <Footer />
   </div>
 </template>
 
@@ -15,3 +16,4 @@
   flex-direction: column;
 }
 </style>
+<script setup lang="ts"></script>

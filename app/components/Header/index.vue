@@ -13,12 +13,9 @@ const links: HeaderLink[] = [
 
 <template>
   <header
-    class="container justify-between min-h-16 items-center flex mx-auto relative"
+    class="sticky top-0 z-50 backdrop-blur-md container mx-auto flex justify-between items-center min-h-16 after:absolute after:bottom-0 after:left-[-400%] after:w-[400vw] w-[400vw] after:h-0.5 after:bg-gray-400/10 after:z-0"
   >
-    <div class="flex gap-4 w-max items-center">
-      <Snowflake class="text-primary" :size="27" />
-      <div class="text-xl font-semibold">Snow Vibe</div>
-    </div>
+    <MyLogo />
     <nav class="flex gap-20">
       <NuxtLink
         v-for="(link, index) in links"
