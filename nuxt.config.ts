@@ -19,7 +19,6 @@ export default defineNuxtConfig({
     preset: "github-pages",
     prerender: {
       routes: ["/"],
-      failOnError: false,
     },
   },
   modules: [
