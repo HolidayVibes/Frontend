@@ -1,13 +1,12 @@
 <script setup lang="ts">
-import { Snowflake } from "lucide-vue-next";
 import { type HeaderLink } from "#shared/interfaces/HeaderLink";
 
 const links: HeaderLink[] = [
   { label: "Главная", to: { name: "index" } },
-  { label: "Музыка и фильмы", to: "media" },
-  { label: "Картинки", to: "images" },
-  { label: "Советы и идеи", to: "ideas" },
-  { label: "Места", to: "places" },
+  { label: "Музыка и фильмы", to: { name: "media" } },
+  { label: "Картинки", to: { name: "images" } },
+  { label: "Советы и идеи", to: { name: "ideas" } },
+  { label: "Места", to: { name: "places" } },
 ];
 </script>
 
