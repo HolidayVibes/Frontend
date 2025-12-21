@@ -15,9 +15,9 @@ const entertainments = ref<IEntertainment[]>(Entertainments);
 </script>
 
 <template>
-  <main class="container mx-auto flex flex-col pt-20 gap-20">
+  <main class="container mx-auto flex flex-col pt-20 gap-20 max-sm:p-3">
     <section
-      class="h-[600px] flex flex-col justify-center bg-cover bg-center items-center rounded-picture gap-6 text-center"
+      class="h-[600px] flex flex-col justify-center bg-cover bg-center items-center rounded-picture gap-6 text-center max-sm:p-5"
       :style="{
         backgroundImage: `linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.7)), url(${mainImg})`,
       }"
@@ -28,7 +28,7 @@ const entertainments = ref<IEntertainment[]>(Entertainments);
         <PartyPopper :size="16" />
         <span>2024 is coming</span>
       </div>
-      <h1 class="text-7xl drop-shadow-sm font-extrabold grid">
+      <h1 class="sm:text-7xl text-4xl drop-shadow-sm font-extrabold grid">
         <span>Пусть начинается</span>
         <span class="text-primary">Волшебство</span>
       </h1>
@@ -38,7 +38,7 @@ const entertainments = ref<IEntertainment[]>(Entertainments);
         Погрузитесь в праздничную атмосферу, найдите свое новогоднее настроение
         и поделитесь теплом с близкими.
       </div>
-      <div class="flex gap-3">
+      <div class="flex gap-3 max-sm:flex-col">
         <Button
           class="flex h-12 items-center justify-center rounded-xl bg-primary px-8 text-base font-bold text-white transition-all hover:bg-red-600 shadow-lg shadow-primary/25 cursor-pointer"
         >
@@ -81,7 +81,7 @@ const entertainments = ref<IEntertainment[]>(Entertainments);
       </div>
 
       <div
-        class="absolute left-[-400%] w-[450vw] top-0 h-full bg-surface -z-10 border-y border-gray-400/20"
+        class="absolute sm:left-[-400%] left-[-50%] w-[450vw] top-0 h-full bg-surface -z-10 border-y border-gray-400/20"
       />
     </section>
     <section class="py-20 px-4">
