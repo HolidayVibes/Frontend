@@ -1,6 +1,9 @@
 <template>
   <div class="min-h-screen flex flex-col">
-    <Header />
+    <div class="max-lg:hidden">
+      <Header />
+    </div>
+    <HeaderSidebar class="lg:hidden" />
     <div class="main-content flex-grow">
       <slot></slot>
     </div>
@@ -16,3 +19,4 @@
   flex-direction: column;
 }
 </style>
+<script setup lang="ts"></script>

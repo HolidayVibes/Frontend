@@ -1,13 +1,8 @@
 <script setup lang="ts">
 import { type HeaderLink } from "#shared/interfaces/HeaderLink";
+import { HeaderLinks } from "#shared/constants/HeaderLinks/HeaderLinks";
 
-const links: HeaderLink[] = [
-  { label: "Главная", to: { name: "index" } },
-  { label: "Музыка и фильмы", to: { name: "media" } },
-  { label: "Картинки", to: { name: "images" } },
-  { label: "Советы и идеи", to: { name: "ideas" } },
-  { label: "Места", to: { name: "places" } },
-];
+const links: HeaderLink[] = HeaderLinks;
 </script>
 
 <template>
