@@ -7,7 +7,7 @@ const links: HeaderLink[] = HeaderLinks;
 
 <template>
   <header
-    class="sticky top-0 z-50 backdrop-blur-md container mx-auto flex justify-between items-center min-h-16 after:absolute after:bottom-0 after:left-[-400%] after:w-[400vw] w-[400vw] after:h-0.5 after:bg-gray-400/10 after:z-0"
+    class="sticky top-0 z-50 backdrop-blur-md container mx-auto flex justify-between items-center min-h-16 after:absolute after:bottom-0 after:left-[-100%] after:w-[400vw] w-[400vw] after:h-0.5 after:bg-gray-400/10 after:z-0"
   >
     <MyLogo />
     <nav class="flex gap-20">
