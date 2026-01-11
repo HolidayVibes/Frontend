@@ -13,7 +13,7 @@ export default defineNuxtConfig({
         },
       ],
     },
-    baseURL: "/holiday-vibe/",
+    baseURL: "/Frontend/",
   },
   nitro: {
     preset: "github-pages",
