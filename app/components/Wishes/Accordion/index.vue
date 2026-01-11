@@ -36,7 +36,7 @@ const forwarded = useForwardPropsEmits(props, emits);
         </template>
       </AccordionTrigger>
 
-      <AccordionContent>
+      <AccordionContent class="px-3 text-[16px]">
         <slot name="content" />
       </AccordionContent>
     </AccordionItem>

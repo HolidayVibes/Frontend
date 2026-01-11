@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { type IMusic } from "#shared/entities/Music";
+import type { IMusic } from "#shared/entities/Music";
 import { Play } from "lucide-vue-next";
 
 const { music } = defineProps<{
   music: IMusic;
 }>();
-
-const bgImage = useProxyImage(music.img);
 </script>
 
 <template>
@@ -19,7 +17,7 @@ const bgImage = useProxyImage(music.img);
       <div
         class="w-full h-full bg-cover bg-center transform group-hover:scale-110 transition-transform duration-500"
         :style="{
-          backgroundImage: `url(${bgImage})`,
+          backgroundImage: `url(${music.img})`,
         }"
       ></div>
       <div
