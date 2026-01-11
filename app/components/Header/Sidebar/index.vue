@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Menu, X } from "lucide-vue-next";
-import { type HeaderLink } from "#shared/interfaces/HeaderLink";
+import type { HeaderLink } from "#shared/interfaces/HeaderLink";
 import { HeaderLinks } from "#shared/constants/HeaderLinks/HeaderLinks";
 
 const isSidebarOpen = ref<boolean>(false);
@@ -10,7 +10,7 @@ const links: HeaderLink[] = HeaderLinks;
 
 <template>
   <div class="p-2 border-b-2 border-gray-400/10">
-    <MySidebar :isOpen="isSidebarOpen">
+    <MySidebar :is-open="isSidebarOpen">
       <template #header>
         <div class="flex items-center justify-between">
           <MyLogo />

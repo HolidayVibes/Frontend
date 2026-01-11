@@ -1,4 +1,4 @@
-import { MusicModels } from "#shared/entities/Music";
+import type { MusicModels } from "#shared/entities/Music";
 
 export const musicData: MusicModels.PayloadCreate[] = [
   {

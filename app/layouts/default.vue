@@ -12,6 +12,7 @@
   </div>
 </template>
 
+<script setup lang="ts"></script>
 <style scoped lang="scss">
 .main-content {
   display: flex;
@@ -19,4 +20,3 @@
   flex-direction: column;
 }
 </style>
-<script setup lang="ts"></script>

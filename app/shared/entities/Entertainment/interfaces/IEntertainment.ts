@@ -1,4 +1,4 @@
-import * as LucideIcons from "lucide-vue-next";
+import type * as LucideIcons from "lucide-vue-next";
 
 export interface IEntertainment {
   img: string;

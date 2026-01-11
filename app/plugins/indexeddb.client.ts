@@ -1,5 +1,5 @@
 import { openDB } from "idb";
-import { type AppDBSchema } from "#shared/db/schema";
+import type { AppDBSchema } from "#shared/db/schema";
 
 export const DB_NAME = "holiday-db";
 export const DB_VERSION = 1;

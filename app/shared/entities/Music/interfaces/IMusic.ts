@@ -1,4 +1,4 @@
-import { type MusicId } from "../models/index";
+import type { MusicId } from "../models/index";
 
 export interface IMusic {
   id: MusicId;

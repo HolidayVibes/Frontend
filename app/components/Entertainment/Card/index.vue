@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type IEntertainment } from "#shared/entities/Entertainment";
+import type { IEntertainment } from "#shared/entities/Entertainment";
 
 const { entertainment } = defineProps<{
   entertainment: IEntertainment;
@@ -18,7 +18,7 @@ const { entertainment } = defineProps<{
         <div class="">
           {{ entertainment.name }}
         </div>
-        <MyIcon :iconName="entertainment.icon" class="text-gray-500" />
+        <MyIcon :icon-name="entertainment.icon" class="text-gray-500" />
       </div>
       <div class="text-gray-400 text-sm">
         {{ entertainment.description }}

@@ -11,7 +11,7 @@ const isOpen = ref<(string | undefined)[]>([
 
 <template>
   <div class="flex flex-col gap-3">
-    <WishesAccordion v-model="isOpen[0]" itemValue="item-1">
+    <WishesAccordion v-model="isOpen[0]" item-value="item-1">
       <template #trigger>
         <div class="flex items-center gap-2">
           <div class="p-2 bg-primary/10 rounded-full">
@@ -28,7 +28,7 @@ const isOpen = ref<(string | undefined)[]>([
       </template>
     </WishesAccordion>
 
-    <WishesAccordion v-model="isOpen[1]" itemValue="item-2">
+    <WishesAccordion v-model="isOpen[1]" item-value="item-2">
       <template #trigger>
         <div class="flex items-center gap-2">
           <div class="p-2 bg-primary/10 rounded-full">
@@ -46,7 +46,7 @@ const isOpen = ref<(string | undefined)[]>([
       </template>
     </WishesAccordion>
 
-    <WishesAccordion v-model="isOpen[2]" itemValue="item-3">
+    <WishesAccordion v-model="isOpen[2]" item-value="item-3">
       <template #trigger>
         <div class="flex items-center gap-2">
           <div class="p-2 bg-primary/10 rounded-full">
@@ -63,7 +63,7 @@ const isOpen = ref<(string | undefined)[]>([
       </template>
     </WishesAccordion>
 
-    <WishesAccordion v-model="isOpen[3]" itemValue="item-4">
+    <WishesAccordion v-model="isOpen[3]" item-value="item-4">
       <template #trigger>
         <div class="flex items-center gap-2">
           <div class="p-2 bg-primary/10 rounded-full">

@@ -1,7 +1,7 @@
-import { type IMusic, MusicModels } from "#shared/entities/Music";
+import type { MusicModels, type IMusic } from "#shared/entities/Music";
 import { musicData } from "#shared/constants/Music/MusicData";
 
-const STORE: string = "db-music";
+const STORE = "db-music";
 
 export const MusicDB = {
   async generateBase() {

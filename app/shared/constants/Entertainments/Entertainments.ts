@@ -1,4 +1,4 @@
-import { type IEntertainment } from "#shared/entities/Entertainment";
+import type { IEntertainment } from "#shared/entities/Entertainment";
 
 export const Entertainments: IEntertainment[] = [
   {
