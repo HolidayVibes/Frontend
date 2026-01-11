@@ -13,7 +13,7 @@ export default defineNuxtConfig({
         },
       ],
     },
-    baseURL: "/",
+    baseURL: "/Frontend/",
   },
   nitro: {
     preset: "github-pages",
@@ -61,8 +61,5 @@ export default defineNuxtConfig({
         },
       },
     },
-  },
-  colorMode: {
-    classSuffix: "",
   },
 });
