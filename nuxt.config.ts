@@ -13,7 +13,7 @@ export default defineNuxtConfig({
         },
       ],
     },
-    baseURL: "/Frontend/",
+    baseURL: "/",
   },
   nitro: {
     preset: "github-pages",
