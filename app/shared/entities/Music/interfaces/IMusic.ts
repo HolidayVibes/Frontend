@@ -1,9 +1,16 @@
-import type { MusicId } from "../models/index";
+import type { MusicGenres, MusicId } from "../models/index";
 
 export interface IMusic {
   id: MusicId;
-  name: string;
+  title: string;
   author: string;
-  img: string;
+  releaseDate: number;
+  description: string;
+  duration: number;
+  album?: string;
+  imgUrl: string;
+  genre: MusicGenres;
   linkToYm: string;
+  createdAt: string;
+  updatedAt: string;
 }

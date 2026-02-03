@@ -1,6 +1,6 @@
 import type { RouteLocationRaw } from "vue-router";
 
-export interface HeaderLink {
+export interface IHeaderLink {
   label: string;
   to: RouteLocationRaw;
 }

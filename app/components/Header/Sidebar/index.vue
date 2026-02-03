@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { Menu, X } from "lucide-vue-next";
-import type { HeaderLink } from "#shared/interfaces/HeaderLink";
+import type { IHeaderLink } from "Frontend/app/shared/interfaces/IHeaderLink";
 import { HeaderLinks } from "#shared/constants/HeaderLinks/HeaderLinks";
 
 const isSidebarOpen = ref<boolean>(false);
 
-const links: HeaderLink[] = HeaderLinks;
+const links: IHeaderLink[] = HeaderLinks;
 </script>
 
 <template>

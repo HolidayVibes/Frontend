@@ -21,6 +21,11 @@ export default defineNuxtConfig({
       routes: ["/"],
     },
   },
+  runtimeConfig: {
+    public: {
+      url: process.env["URL"],
+    },
+  },
   modules: [
     "@nuxt/eslint",
     "@pinia/nuxt",

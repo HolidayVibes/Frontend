@@ -17,7 +17,7 @@ const { music } = defineProps<{
       <div
         class="w-full h-full bg-cover bg-center transform group-hover:scale-110 transition-transform duration-500"
         :style="{
-          backgroundImage: `url(${music.img})`,
+          backgroundImage: `url('${encodeURI(music.imgUrl)}')`,
         }"
       ></div>
       <div
@@ -27,7 +27,7 @@ const { music } = defineProps<{
       </div>
     </div>
     <div>
-      <p class="text-white font-semibold truncate">{{ music.name }}</p>
+      <p class="text-white font-semibold truncate">{{ music.title }}</p>
       <p class="text-text-secondary text-sm truncate">{{ music.author }}</p>
     </div>
   </a>

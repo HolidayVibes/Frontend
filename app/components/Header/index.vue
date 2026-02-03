@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { HeaderLink } from "#shared/interfaces/HeaderLink";
+import type { IHeaderLink } from "#shared/interfaces/IHeaderLink";
 import { HeaderLinks } from "#shared/constants/HeaderLinks/HeaderLinks";
 
-const links: HeaderLink[] = HeaderLinks;
+const links: IHeaderLink[] = HeaderLinks;
 </script>
 
 <template>

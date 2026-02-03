@@ -74,6 +74,7 @@ export default withNuxt([
     rules: {
       "@typescript-eslint/explicit-module-boundary-types": "off",
       "@typescript-eslint/strict-boolean-expressions": "off",
+      "@typescript-eslint/consistent-type-imports": "warn"
     },
   },
 
