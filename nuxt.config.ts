@@ -13,14 +13,9 @@ export default defineNuxtConfig({
         },
       ],
     },
-    baseURL: "/Frontend/",
+    baseURL: "/",
   },
-  nitro: {
-    preset: "github-pages",
-    prerender: {
-      routes: ["/"],
-    },
-  },
+
   runtimeConfig: {
     public: {
       url: process.env["URL"],

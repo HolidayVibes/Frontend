@@ -3,6 +3,19 @@ import type { IHeaderLink } from "#shared/interfaces/IHeaderLink";
 import { HeaderLinks } from "#shared/constants/HeaderLinks/HeaderLinks";
 
 const links: IHeaderLink[] = HeaderLinks;
+const userStore = useUserStore();
+const route = useRoute();
+const router = useRouter();
+
+const redirectTo = (to: string) => {
+  router.replace({
+    path: route.path,
+    query: {
+      ...route.query,
+      modal: to,
+    },
+  });
+};
 </script>
 
 <template>
@@ -28,6 +41,14 @@ const links: IHeaderLink[] = HeaderLinks;
       </NuxtLink>
     </nav>
 
-    <div class="w-0"></div>
+    <div>
+      <div v-if="!userStore.isUserAuthorised" class="flex gap-5 items-center">
+        <Button variant="outline" @click="redirectTo('login')">Войти</Button>
+        <Button variant="outline" @click="redirectTo('register')">
+          Зарегестрироваться
+        </Button>
+      </div>
+      <div class=""></div>
+    </div>
   </header>
 </template>

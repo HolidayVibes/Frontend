@@ -1,1 +1,1 @@
-export const BASE_URL = "api/v1/music";
+export const BASE_URL = "/music";

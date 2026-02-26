@@ -27,5 +27,6 @@ export const useRequest = async <TResponse, TParams = unknown, TBody = unknown>(
     data: request.body,
     responseType: request.type ?? "json",
     headers: request.headers,
+    withCredentials: true,
   });
 };
