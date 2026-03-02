@@ -1,12 +1,12 @@
 <script lang="ts" setup>
 import type { IUser } from "#shared/entities/User/interfaces/IUser";
-import type { authModalType } from "#shared/interfaces/IAuthModal";
+import { AuthModalEnum } from "#shared/enums/authModal.enum";
 
 const userStore = useUserStore();
 const route = useRoute();
 
 if (userStore.isUserLoading) {
-  const { data } = await useFetch<IUser>("http://localhost:3000/api/me", {
+  const { data } = await useFetch<IUser>("/api/me", {
     credentials: "include",
   });
 
@@ -20,12 +20,29 @@ if (userStore.isUserLoading) {
 
 const router = useRouter();
 
-const modalType = computed<authModalType | null>({
-  get: () => (route.query.modal as authModalType) || null,
-  set: (value: string | null) => {
+const modalType = computed<AuthModalEnum | null>({
+  get: () => {
+    const modal = route.query.modal;
+
+    if (
+      typeof modal === "string" &&
+      Object.values(AuthModalEnum).includes(modal as AuthModalEnum)
+    ) {
+      return modal as AuthModalEnum;
+    }
+
+    return null;
+  },
+
+  set: (value: AuthModalEnum | null) => {
     const query = { ...route.query };
-    if (value) query.modal = value;
-    else delete query.modal;
+
+    if (value) {
+      query.modal = value;
+    } else {
+      delete query.modal;
+    }
+
     router.replace({ query });
   },
 });
@@ -36,6 +53,10 @@ const isOpen = computed<boolean>({
     if (!val) modalType.value = null;
   },
 });
+
+const switchMode = (mode: AuthModalEnum) => {
+  modalType.value = mode;
+};
 </script>
 <template>
   <div class="min-h-screen flex flex-col">
@@ -50,7 +71,8 @@ const isOpen = computed<boolean>({
     <Footer />
     <ModalsAuth
       v-model:is-modal-open="isOpen"
-      :modal-type="modalType ?? 'login'"
+      :modal-type="modalType ?? AuthModalEnum.LOGIN"
+      @switchMode="switchMode"
     />
   </div>
 </template>

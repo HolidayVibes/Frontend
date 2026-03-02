@@ -1,10 +1,17 @@
+import {
+  appendHeader,
+  createError,
+  defineEventHandler,
+  getCookie,
+  getRequestHeaders,
+} from "h3";
+import { useRuntimeConfig } from "#imports";
+
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
   const headers = getRequestHeaders(event);
 
   const refreshToken = getCookie(event, "refreshToken");
-
-  console.log(refreshToken);
 
   if (!refreshToken) {
     throw createError({
@@ -19,23 +26,21 @@ export default defineEventHandler(async (event) => {
       headers: {
         cookie: headers.cookie || "",
       },
+      method: "POST",
     },
   );
 
-  console.log(refreshResponse);
+  const newCookies = refreshResponse.headers.get("set-cookie");
 
-  const setCookie = refreshResponse.headers.get("set-cookie");
-  if (setCookie) {
-    appendHeader(event, "set-cookie", setCookie);
+  if (newCookies) {
+    appendHeader(event, "set-cookie", newCookies);
   }
 
   const meResponse = await $fetch(`${config.public.url}/user/me`, {
     headers: {
-      cookie: headers.cookie || "",
+      cookie: newCookies || headers.cookie || "",
     },
   });
-
-  console.log(meResponse);
 
   return meResponse;
 });

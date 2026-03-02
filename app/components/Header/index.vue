@@ -16,6 +16,7 @@ const redirectTo = (to: string) => {
     },
   });
 };
+const { avatar, avatarColor } = useUserAvatar();
 </script>
 
 <template>
@@ -48,7 +49,19 @@ const redirectTo = (to: string) => {
           Зарегестрироваться
         </Button>
       </div>
-      <div class=""></div>
+      <div v-else>
+        <Avatar class="cursor-pointer">
+          <AvatarImage :src="avatar" />
+          <AvatarFallback
+            :style="{ backgroundColor: avatarColor }"
+            class="flex justify-center items-center"
+          >
+            <div class="text-center font-semibold text-lg">
+              {{ avatar }}
+            </div>
+          </AvatarFallback>
+        </Avatar>
+      </div>
     </div>
   </header>
 </template>

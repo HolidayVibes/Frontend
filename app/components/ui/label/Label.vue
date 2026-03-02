@@ -12,7 +12,6 @@ const delegatedProps = reactiveOmit(props, "class");
 
 <template>
   <Label
-    class="mb-3"
     data-slot="label"
     v-bind="delegatedProps"
     :class="
