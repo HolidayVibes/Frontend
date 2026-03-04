@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import type { IUser } from "#shared/entities/User/interfaces/IUser";
 import { AuthModalEnum } from "#shared/enums/authModal.enum";
+import "vue-sonner/style.css";
 
 const userStore = useUserStore();
 const route = useRoute();
@@ -60,6 +61,7 @@ const switchMode = (mode: AuthModalEnum) => {
 </script>
 <template>
   <div class="min-h-screen flex flex-col">
+    <Toaster position="top-right" theme="dark" rich-colors />
     <div class="max-lg:hidden">
       <Header />
     </div>

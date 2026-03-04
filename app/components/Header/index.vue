@@ -1,11 +1,23 @@
 <script setup lang="ts">
 import type { IHeaderLink } from "#shared/interfaces/IHeaderLink";
 import { HeaderLinks } from "#shared/constants/HeaderLinks/HeaderLinks";
+import { ProfileDropdownLinks } from "#shared/constants/ProfileDropdownLinks/ProfileDropdownLinks";
+import { AuthApi } from "@/shared/entities/Auth";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuSeparator,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
 
 const links: IHeaderLink[] = HeaderLinks;
 const userStore = useUserStore();
 const route = useRoute();
 const router = useRouter();
+
+const profileDropdown = ProfileDropdownLinks;
 
 const redirectTo = (to: string) => {
   router.replace({
@@ -17,6 +29,10 @@ const redirectTo = (to: string) => {
   });
 };
 const { avatar, avatarColor } = useUserAvatar();
+
+const logout = () => {
+  AuthApi.logout();
+};
 </script>
 
 <template>
@@ -50,17 +66,39 @@ const { avatar, avatarColor } = useUserAvatar();
         </Button>
       </div>
       <div v-else>
-        <Avatar class="cursor-pointer">
-          <AvatarImage :src="avatar" />
-          <AvatarFallback
-            :style="{ backgroundColor: avatarColor }"
-            class="flex justify-center items-center"
-          >
-            <div class="text-center font-semibold text-lg">
-              {{ avatar }}
-            </div>
-          </AvatarFallback>
-        </Avatar>
+        <DropdownMenu>
+          <DropdownMenuTrigger>
+            <Avatar class="cursor-pointer">
+              <AvatarImage :src="avatar" />
+              <AvatarFallback
+                :style="{ backgroundColor: avatarColor }"
+                class="flex justify-center items-center"
+              >
+                <div class="text-center font-semibold text-lg">
+                  {{ avatar }}
+                </div>
+              </AvatarFallback>
+            </Avatar>
+          </DropdownMenuTrigger>
+          <DropdownMenuContent>
+            <DropdownMenuGroup>
+              <DropdownMenuItem
+                v-for="item in profileDropdown"
+                :key="item.label"
+              >
+                <NuxtLink :to="item.to">
+                  {{ item.label }}
+                </NuxtLink>
+                <DropdownMenuSeparator />
+              </DropdownMenuItem>
+            </DropdownMenuGroup>
+            <DropdownMenuGroup>
+              <DropdownMenuItem @click.prevent="logout" class="cursor-pointer">
+                Выйти
+              </DropdownMenuItem>
+            </DropdownMenuGroup>
+          </DropdownMenuContent>
+        </DropdownMenu>
       </div>
     </div>
   </header>

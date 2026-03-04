@@ -1,4 +1,4 @@
-import type { IHeaderLink } from "Frontend/app/shared/interfaces/IHeaderLink";
+import type { IHeaderLink } from "#shared/interfaces/IHeaderLink";
 
 export const HeaderLinks: IHeaderLink[] = [
   { label: "Главная", to: { name: "index" } },

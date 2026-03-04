@@ -25,6 +25,7 @@ import {
   PinInputGroup,
   PinInputSlot,
 } from "@/components/ui/pin-input";
+import { toast } from "vue-sonner";
 
 const { modalType } = defineProps<{
   modalType: AuthModalEnum;
@@ -67,7 +68,10 @@ const form = useForm({
 const login = async (values: AuthModel.LoginPayload) => {
   const { error } = await AuthApi.login(values);
 
-  if (error) return;
+  if (error) {
+    toast.error(error.message);
+    return;
+  }
 
   await UserApi.me();
   isModalOpen.value = false;

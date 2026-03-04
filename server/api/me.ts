@@ -1,46 +1,52 @@
-import {
-  appendHeader,
-  createError,
-  defineEventHandler,
-  getCookie,
-  getRequestHeaders,
-} from "h3";
-import { useRuntimeConfig } from "#imports";
+import type { H3Event } from "h3";
+import { FetchError } from "ofetch";
 
 export default defineEventHandler(async (event) => {
   const config = useRuntimeConfig();
   const headers = getRequestHeaders(event);
 
-  const refreshToken = getCookie(event, "refreshToken");
-
-  if (!refreshToken) {
-    throw createError({
-      statusCode: 401,
-      statusMessage: "No refresh token",
-    });
-  }
-
-  const refreshResponse = await $fetch.raw(
-    `${config.public.url}/auth/refresh`,
-    {
+  try {
+    return await $fetch(`${config.public.url}/user/me`, {
       headers: {
         cookie: headers.cookie || "",
       },
-      method: "POST",
-    },
-  );
+    });
+  } catch (error: unknown) {
+    if (error instanceof FetchError) {
+      if (error.response?.status === 401) {
+        const newCookieHeader = await refreshTokens(event);
 
-  const newCookies = refreshResponse.headers.get("set-cookie");
-
-  if (newCookies) {
-    appendHeader(event, "set-cookie", newCookies);
+        return await $fetch(`${config.public.url}/user/me`, {
+          headers: {
+            cookie: newCookieHeader,
+          },
+        });
+      }
+    }
+    throw error;
   }
+});
 
-  const meResponse = await $fetch(`${config.public.url}/user/me`, {
+async function refreshTokens(event: H3Event) {
+  const config = useRuntimeConfig();
+  const headers = getRequestHeaders(event);
+
+  const response = await $fetch.raw(`${config.public.url}/auth/refresh`, {
+    method: "POST",
     headers: {
-      cookie: newCookies || headers.cookie || "",
+      cookie: headers.cookie || "",
     },
   });
 
-  return meResponse;
-});
+  const setCookies = response.headers.getSetCookie?.();
+
+  if (!setCookies) return headers.cookie || "";
+
+  for (const cookie of setCookies) {
+    appendHeader(event, "set-cookie", cookie);
+  }
+
+  const updatedCookies = [...setCookies].map((c) => c.split(";")[0]).join("; ");
+
+  return updatedCookies;
+}
