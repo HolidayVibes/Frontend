@@ -1,6 +1,4 @@
 <script setup lang="ts">
-// TODO: Сделать нормальное отображение ошибок через тост
-// TODO: При рефреш запросе обратно ставить accessCookie
 import { Button } from "@/components/ui/button";
 import {
   Dialog,
