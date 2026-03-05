@@ -2,7 +2,7 @@
 import mainImg from "@/assets/img/main.png";
 import { Mail, PartyPopper } from "lucide-vue-next";
 import type { IEntertainment } from "#shared/entities/Entertainment";
-import { Entertainments } from "#shared/constants/Entertainments/Entertainments";
+import { EntertainmentsConst } from "#shared/constants/Entertainments.const";
 
 definePageMeta({
   name: "index",
@@ -11,7 +11,7 @@ useHead({
   title: "Главная - Holiday Vibe",
 });
 
-ref<IEntertainment[]>(Entertainments);
+ref<IEntertainment[]>(EntertainmentsConst);
 </script>
 
 <template>

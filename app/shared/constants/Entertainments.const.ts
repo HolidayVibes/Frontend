@@ -1,6 +1,6 @@
 import type { IEntertainment } from "#shared/entities/Entertainment";
 
-export const Entertainments: IEntertainment[] = [
+export const EntertainmentsConst: IEntertainment[] = [
   {
     img: "firstImg",
     icon: "Music2",

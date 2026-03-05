@@ -3,9 +3,9 @@ import firstImg from "@/assets/img/entertainments/1.png";
 import secondImg from "@/assets/img/entertainments/2.png";
 import thirdImg from "@/assets/img/entertainments/3.png";
 import type { IEntertainment } from "#shared/entities/Entertainment";
-import { Entertainments } from "#shared/constants/Entertainments/Entertainments";
+import { EntertainmentsConst } from "#shared/constants/Entertainments.const";
 
-const entertainments = ref<IEntertainment[]>(Entertainments);
+const entertainments = ref<IEntertainment[]>(EntertainmentsConst);
 </script>
 
 <template>

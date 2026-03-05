@@ -1,6 +1,6 @@
 import type { MusicModels } from "#shared/entities/Music";
 
-export const musicData: MusicModels.PayloadCreate[] = [
+export const musicDataConst: MusicModels.PayloadCreate[] = [
   {
     name: "Jingle Bells Rock",
     author: "James Lord Pierpont",

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import type { IHeaderLink } from "#shared/interfaces/IHeaderLink";
-import { HeaderLinks } from "#shared/constants/HeaderLinks/HeaderLinks";
-import { ProfileDropdownLinks } from "#shared/constants/ProfileDropdownLinks/ProfileDropdownLinks";
+import { HeaderLinksConst } from "#shared/constants/HeaderLinks.const";
+import { ProfileDropdownLinksConst } from "#shared/constants/ProfileDropdownLinks.const";
 import { AuthApi } from "@/shared/entities/Auth";
 import {
   DropdownMenu,
@@ -12,12 +12,12 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-const links: IHeaderLink[] = HeaderLinks;
+const links: IHeaderLink[] = HeaderLinksConst;
 const userStore = useUserStore();
 const route = useRoute();
 const router = useRouter();
 
-const profileDropdown = ProfileDropdownLinks;
+const profileDropdown = ProfileDropdownLinksConst;
 
 const redirectTo = (to: string) => {
   router.replace({
@@ -93,7 +93,7 @@ const logout = () => {
               </DropdownMenuItem>
             </DropdownMenuGroup>
             <DropdownMenuGroup>
-              <DropdownMenuItem @click.prevent="logout" class="cursor-pointer">
+              <DropdownMenuItem class="cursor-pointer" @click.prevent="logout">
                 Выйти
               </DropdownMenuItem>
             </DropdownMenuGroup>
