@@ -14,6 +14,7 @@ interface IRequest<TParams = unknown, TBody = unknown> {
   type?: ResponseType;
 }
 
+// TODO: Переписать на fetch
 export const useRequest = async <TResponse, TParams = unknown, TBody = unknown>(
   request: IRequest<TParams, TBody>,
 ): Promise<AxiosResponse<TResponse>> => {

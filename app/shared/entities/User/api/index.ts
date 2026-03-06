@@ -1,8 +1,9 @@
-import { type IUser, UserConst } from "..";
+import { type IUser, UserConst, UserModels } from "..";
+import { FetchError } from "ofetch";
+
+const userStore = useUserStore();
 
 export async function me() {
-  const userStore = useUserStore();
-
   userStore.isUserLoading = true;
 
   try {
@@ -21,5 +22,25 @@ export async function me() {
     throw error;
   } finally {
     userStore.isUserLoading = false;
+  }
+}
+
+export async function edit(values: UserModels.edit) {
+  try {
+    const userData = await useRequest<IUser, never, UserModels.edit>({
+      url: UserConst.BASE_URL,
+      method: "PUT",
+      body: values,
+    });
+
+    userStore.user = userData.data;
+
+    return userData;
+  } catch (error: unknown) {
+    if (error instanceof FetchError) {
+      return { error };
+    }
+
+    return new FetchError("Ошибка редактирования пользователя");
   }
 }

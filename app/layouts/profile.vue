@@ -18,9 +18,7 @@ const profileNavigationTiles = ProfileNavigationTileConst;
           <Separator />
           <div>Выход</div>
         </div>
-        <div>
-          <slot></slot>
-        </div>
+        <slot></slot>
       </div>
     </NuxtLayout>
   </div>

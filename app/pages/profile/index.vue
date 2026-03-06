@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { ProfileNavigationTileConst } from "#shared/constants/ProfileNavigationTile.const";
-
 definePageMeta({
   name: "profile",
   layout: "profile",
@@ -8,10 +6,12 @@ definePageMeta({
 useHead({
   title: "Профиль - Holiday Vibes",
 });
-
-const profileNavigationTiles = ProfileNavigationTileConst;
 </script>
 
 <template>
-  <div class=""> SOSIIIIII </div>
+  <div class="w-full flex flex-col gap-5">
+    <ProfileMe />
+    <div class=""></div>
+    <div class=""></div>
+  </div>
 </template>
