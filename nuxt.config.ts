@@ -3,6 +3,13 @@ import { resolve } from "path";
 
 export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
+  srcDir: "app/",
+  serverDir: "server/",
+  routeRules: {
+    "/backend/api/**": {
+      proxy: process.env.URL + "/api/**",
+    },
+  },
   devtools: {
     enabled: true,
 
@@ -54,10 +61,6 @@ export default defineNuxtConfig({
     componentDir: "@/components/ui",
   },
   alias: {
-    "~": resolve(__dirname, "./app"),
-    "@": resolve(__dirname, "./app"),
-    "~~": resolve(__dirname, "./"),
-    "@@": resolve(__dirname, "./"),
     "#shared": resolve(__dirname, "./app/shared"),
   },
   vite: {

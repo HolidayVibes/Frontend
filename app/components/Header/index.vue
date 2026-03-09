@@ -68,17 +68,7 @@ const logout = () => {
       <div v-else>
         <DropdownMenu>
           <DropdownMenuTrigger>
-            <Avatar class="cursor-pointer">
-              <AvatarImage :src="avatar" />
-              <AvatarFallback
-                :style="{ backgroundColor: avatarColor }"
-                class="flex justify-center items-center"
-              >
-                <div class="text-center font-semibold text-lg">
-                  {{ avatar }}
-                </div>
-              </AvatarFallback>
-            </Avatar>
+            <MyAvatar :avatar="avatar" :avatar-color="avatarColor" />
           </DropdownMenuTrigger>
           <DropdownMenuContent>
             <DropdownMenuGroup>

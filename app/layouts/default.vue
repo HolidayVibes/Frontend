@@ -1,25 +1,26 @@
 <script lang="ts" setup>
-import type { IUser } from "#shared/entities/User/interfaces/IUser";
 import { AuthModalEnum } from "#shared/enums/authModal.enum";
 import "vue-sonner/style.css";
-
-const userStore = useUserStore();
-const route = useRoute();
-
-if (userStore.isUserLoading) {
-  const { data } = await useFetch<IUser>("/api/me", {
-    credentials: "include",
-  });
-
-  if (data.value) {
-    userStore.user = data.value;
-    userStore.isUserAuthorised = true;
-  }
-
-  userStore.isUserLoading = false;
-}
+import type { IUser } from "#shared/entities/User";
 
 const router = useRouter();
+const route = useRoute();
+
+const userStore = useUserStore();
+
+const { data } = await useAsyncData("user-me", async () => {
+  const headers = useRequestHeaders(["cookie"]);
+
+  return $fetch<IUser>("/api/me", {
+    headers,
+    credentials: "include",
+  });
+});
+
+if (data.value) {
+  userStore.user = data.value;
+  userStore.isUserAuthorised = true;
+}
 
 const modalType = computed<AuthModalEnum | null>({
   get: () => {

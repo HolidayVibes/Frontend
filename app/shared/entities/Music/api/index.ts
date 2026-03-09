@@ -4,11 +4,10 @@ import type {
   IPaginationPayload,
 } from "#shared/interfaces/IPagination";
 import { useRequest } from "@/composables/useRequest";
-import type { AxiosResponse } from "axios";
 
 export async function getAll(
   payload: IPaginationPayload,
-): Promise<AxiosResponse<IPagination<IMusic>>> {
+): Promise<IPagination<IMusic>> {
   return await useRequest<IPagination<IMusic>, IPaginationPayload, never>({
     url: MusicConsts.BASE_URL,
     params: payload,
@@ -17,7 +16,7 @@ export async function getAll(
 
 export async function getOne({
   id,
-}: MusicModels.IPayloadGetOne): Promise<AxiosResponse<IMusic>> {
+}: MusicModels.IPayloadGetOne): Promise<IMusic> {
   return await useRequest<IMusic, never, never>({
     url: MusicConsts.BASE_URL + "/" + id,
   });
@@ -25,7 +24,7 @@ export async function getOne({
 
 export async function create(
   payload: MusicModels.IPayloadCreate,
-): Promise<AxiosResponse<IMusic>> {
+): Promise<IMusic> {
   return await useRequest<IMusic, never, MusicModels.IPayloadCreate>({
     url: MusicConsts.BASE_URL,
     method: "POST",
@@ -36,7 +35,7 @@ export async function create(
 export async function update({
   id,
   ...body
-}: MusicModels.IPayloadUpdate): Promise<AxiosResponse<IMusic>> {
+}: MusicModels.IPayloadUpdate): Promise<IMusic> {
   return await useRequest<
     IMusic,
     never,
@@ -50,7 +49,7 @@ export async function update({
 
 export async function remove({
   id,
-}: MusicModels.IPayloadDelete): Promise<AxiosResponse<IMusic>> {
+}: MusicModels.IPayloadDelete): Promise<IMusic> {
   return await useRequest<IMusic, never, never>({
     url: MusicConsts.BASE_URL + "/" + id,
     method: "DELETE",

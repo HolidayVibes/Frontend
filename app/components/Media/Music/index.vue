@@ -10,7 +10,7 @@ const getMusic = async () => {
   await MusicApi.getAll({ per_page: 9 }).then((res) => {
     if (!res) return;
 
-    music.value = res.data;
+    music.value = res;
   });
 };
 

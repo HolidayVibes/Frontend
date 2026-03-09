@@ -22,8 +22,17 @@ const buttonText = computed(() =>
 );
 
 const buttonVariant = computed(() => (isEdit.value ? "default" : "outline"));
+const { avatar, avatarColor } = useUserAvatar();
 
 const schema = z.object({
+  avatar: z
+    .instanceof(File)
+    .refine((f) => f.size <= 5 * 1024 * 1024, "Максимальный размер 5MB")
+    .refine(
+      (f) => ["image/jpeg", "image/png", "image/webp"].includes(f.type),
+      "Только JPEG, PNG, WebP",
+    )
+    .optional(),
   firstName: z.string().min(1).max(20),
   lastName: z.string().min(1).max(20),
 });
@@ -36,6 +45,15 @@ const onSubmit = form.handleSubmit((values) => {
   UserApi.edit(values)
     .then((res) => {
       toast.success("Пользователь успешно изменён");
+      return res;
+    })
+    .then((res) => {
+      router.push({
+        query: {
+          ...route.query,
+          "is-edit": undefined,
+        },
+      });
 
       return res;
     })
@@ -67,25 +85,35 @@ const submitForm = () => {
       <MyIcon icon-name="UserCog" />
       <div class="text-lg">Личная информация</div>
     </div>
-    <form class="grid grid-cols-2 gap-4">
-      <FormField v-slot="{ componentField }" name="firstName">
-        <FormItem>
-          <FormLabel>Имя</FormLabel>
-          <FormControl>
-            <Input v-bind="componentField" placeholder="John" />
-          </FormControl>
-          <FormMessage />
-        </FormItem>
+    <form>
+      <FormField v-slot="{ componentField }" name="avatar">
+        <MyAvatar
+          :avatar="avatar"
+          :avatar-color="avatarColor"
+          :is-edit="isEdit"
+          class="size-20 mx-auto mb-7"
+        />
       </FormField>
-      <FormField v-slot="{ componentField }" name="lastName">
-        <FormItem>
-          <FormLabel>Фамилия</FormLabel>
-          <FormControl>
-            <Input v-bind="componentField" placeholder="Doe" />
-          </FormControl>
-          <FormMessage />
-        </FormItem>
-      </FormField>
+      <div class="grid grid-cols-2 gap-4">
+        <FormField v-slot="{ componentField }" name="firstName">
+          <FormItem>
+            <FormLabel>Имя</FormLabel>
+            <FormControl>
+              <Input v-bind="componentField" placeholder="John" />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        </FormField>
+        <FormField v-slot="{ componentField }" name="lastName">
+          <FormItem>
+            <FormLabel>Фамилия</FormLabel>
+            <FormControl>
+              <Input v-bind="componentField" placeholder="Doe" />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        </FormField>
+      </div>
     </form>
     <div>
       <Button :variant="buttonVariant" @click="submitForm">

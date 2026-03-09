@@ -1,33 +1,32 @@
-import axios, {
-  type AxiosHeaders,
-  type AxiosResponse,
-  type Method,
-  type ResponseType,
-} from "axios";
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import type { FetchOptions } from "ofetch";
 
-interface IRequest<TParams = unknown, TBody = unknown> {
+export interface IRequest<
+  TParams extends Record<string, any> = Record<string, any>,
+  TBody extends Record<string, any> = Record<string, any>,
+> {
   url: string;
-  method?: Method;
+  method?: "GET" | "POST" | "PUT" | "PATCH" | "DELETE";
   params?: TParams;
   body?: TBody;
-  headers?: AxiosHeaders;
-  type?: ResponseType;
+  headers?: HeadersInit;
+  type?: FetchOptions["responseType"];
 }
 
-// TODO: Переписать на fetch
-export const useRequest = async <TResponse, TParams = unknown, TBody = unknown>(
+export const useRequest = async <
+  TResponse,
+  TParams extends Record<string, any> = Record<string, any>,
+  TBody extends Record<string, any> = Record<string, any>,
+>(
   request: IRequest<TParams, TBody>,
-): Promise<AxiosResponse<TResponse>> => {
-  const config = useRuntimeConfig();
+): Promise<TResponse> => {
+  const { $api } = useNuxtApp();
 
-  return axios.request<TResponse>({
-    url: request.url,
-    method: request.method ?? "get",
-    baseURL: config.public.url as string,
-    params: request.params,
-    data: request.body,
-    responseType: request.type ?? "json",
+  return await $api<TResponse>(request.url, {
+    method: request.method ?? "GET",
+    query: request.params,
+    body: request.body,
     headers: request.headers,
-    withCredentials: true,
+    responseType: request.type ?? "json",
   });
 };
