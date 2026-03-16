@@ -1,5 +1,5 @@
 export interface edit {
-  avatar?: string;
+  avatar?: File;
   firstName?: string;
   lastName?: string;
 }

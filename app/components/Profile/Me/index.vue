@@ -14,6 +14,7 @@ import { toast } from "vue-sonner";
 
 const route = useRoute();
 const router = useRouter();
+const userStore = useUserStore();
 
 const isEdit = computed(() => !!route.query["is-edit"]);
 
@@ -37,23 +38,23 @@ const schema = z.object({
   lastName: z.string().min(1).max(20),
 });
 
-const form = useForm<UserModels.edit>({
+const { handleSubmit, setFieldValue, handleReset } = useForm<UserModels.edit>({
   validationSchema: toTypedSchema(schema),
+  initialValues: {
+    firstName: userStore.user?.firstName,
+    lastName: userStore.user?.lastName,
+  },
 });
 
-const onSubmit = form.handleSubmit((values) => {
+const onSubmit = handleSubmit((values) => {
   UserApi.edit(values)
     .then((res) => {
       toast.success("Пользователь успешно изменён");
       return res;
     })
     .then((res) => {
-      router.push({
-        query: {
-          ...route.query,
-          "is-edit": undefined,
-        },
-      });
+      userStore.user = res;
+      stopEdit();
 
       return res;
     })
@@ -77,6 +78,16 @@ const submitForm = () => {
 
   onSubmit();
 };
+const stopEdit = (reset = false) => {
+  router.push({
+    query: {
+      ...route.query,
+      "is-edit": undefined,
+    },
+  });
+
+  if (reset) handleReset();
+};
 </script>
 
 <template>
@@ -86,20 +97,23 @@ const submitForm = () => {
       <div class="text-lg">Личная информация</div>
     </div>
     <form>
-      <FormField v-slot="{ componentField }" name="avatar">
-        <MyAvatar
-          :avatar="avatar"
-          :avatar-color="avatarColor"
-          :is-edit="isEdit"
-          class="size-20 mx-auto mb-7"
-        />
-      </FormField>
+      <MyAvatar
+        :avatar="avatar"
+        :avatar-color="avatarColor"
+        :is-edit="isEdit"
+        class="scale-200 mx-auto mb-7"
+        @update:avatar="(file) => setFieldValue('avatar', file)"
+      />
       <div class="grid grid-cols-2 gap-4">
         <FormField v-slot="{ componentField }" name="firstName">
           <FormItem>
             <FormLabel>Имя</FormLabel>
             <FormControl>
-              <Input v-bind="componentField" placeholder="John" />
+              <Input
+                v-bind="componentField"
+                placeholder="John"
+                :disabled="!isEdit"
+              />
             </FormControl>
             <FormMessage />
           </FormItem>
@@ -108,16 +122,23 @@ const submitForm = () => {
           <FormItem>
             <FormLabel>Фамилия</FormLabel>
             <FormControl>
-              <Input v-bind="componentField" placeholder="Doe" />
+              <Input
+                v-bind="componentField"
+                placeholder="Doe"
+                :disabled="!isEdit"
+              />
             </FormControl>
             <FormMessage />
           </FormItem>
         </FormField>
       </div>
     </form>
-    <div>
+    <div class="flex gap-3">
       <Button :variant="buttonVariant" @click="submitForm">
         {{ buttonText }}
+      </Button>
+      <Button v-if="isEdit" variant="outline" @click="stopEdit(true)">
+        Отмена
       </Button>
     </div>
   </div>

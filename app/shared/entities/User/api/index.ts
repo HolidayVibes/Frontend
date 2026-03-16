@@ -49,9 +49,9 @@ export async function edit(values: UserModels.edit) {
     return userData;
   } catch (error: unknown) {
     if (error instanceof FetchError) {
-      return { error };
+      throw error;
     }
 
-    return new FetchError("Ошибка редактирования пользователя");
+    throw new FetchError("Ошибка редактирования пользователя");
   }
 }
