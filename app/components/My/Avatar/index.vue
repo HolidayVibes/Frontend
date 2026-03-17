@@ -1,8 +1,12 @@
 <script setup lang="ts">
-const { isEdit, avatar } = defineProps<{
+import { cn } from "@/lib/utils";
+import { Avatar } from "@/components/ui/avatar";
+
+const { isEdit, avatar, ...props } = defineProps<{
   avatar: string;
   avatarColor: string;
   isEdit?: boolean;
+  class?: string;
 }>();
 
 const emit = defineEmits<{
@@ -38,7 +42,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="relative w-fit size-8">
+  <div :class="cn('relative w-fit size-8', props.class)">
     <Avatar
       :class="[
         'cursor-pointer transition-opacity size-full',

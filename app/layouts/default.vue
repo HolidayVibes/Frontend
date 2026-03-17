@@ -20,8 +20,12 @@ const { data } = await useAsyncData("user-me", async () => {
 if (data.value) {
   userStore.user = data.value;
   userStore.isUserAuthorised = true;
-  sessionStorage.removeItem("modal-closed");
+  if (import.meta.client) {
+    sessionStorage.removeItem("modal-closed");
+  }
 }
+
+userStore.isUserLoading = false;
 
 const modalType = computed<AuthModalEnum | null>({
   get: () => {
@@ -54,7 +58,6 @@ const isOpen = computed<boolean>({
   get: () => !!modalType.value,
   set: (val: boolean) => {
     if (!val) {
-      sessionStorage.setItem("modal-closed", "true");
       modalType.value = null;
     }
   },

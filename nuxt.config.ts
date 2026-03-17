@@ -5,11 +5,6 @@ export default defineNuxtConfig({
   compatibilityDate: "2025-07-15",
   srcDir: "app/",
   serverDir: "server/",
-  routeRules: {
-    "/backend/api/**": {
-      proxy: process.env.URL + "/api/**",
-    },
-  },
   devtools: {
     enabled: true,
 
