@@ -131,10 +131,19 @@
     font-size: var(--text-4xl);
     font-weight: bold;
   }
+
+}
+
+@layer components {
+  .card {
+    padding: 1.25rem;
+    @apply bg-card-foreground/50 rounded-xl border-2 border-card-foreground ;
+  }
 }
 
 @layer utilities {
   .rounded-picture {
     border-radius: 30px;
   }
+
 }

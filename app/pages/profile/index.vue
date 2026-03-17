@@ -10,14 +10,15 @@ useHead({
 
 <template>
   <div class="w-full flex flex-col gap-5">
-    <ProfileMe />
-    <div class="">
-      <div class="flex items-center gap-3">
-        <MyIcon icon-name="BellIcon" />
-        <div class="text-lg">Уведомления</div>
-      </div>
-      <div class="text-primary text-lg">Уведомления пока не реализованы :(</div>
+    <div class="card">
+      <ProfileMe />
     </div>
-    <div class=""></div>
+    <!--    <div>-->
+    <!--      <div class="flex items-center gap-3">-->
+    <!--        <MyIcon icon-name="BellIcon" />-->
+    <!--        <div class="text-lg">Уведомления</div>-->
+    <!--      </div>-->
+    <!--      <div class="text-primary text-lg">Уведомления пока не реализованы :(</div>-->
+    <!--    </div>-->
   </div>
 </template>

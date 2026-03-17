@@ -101,7 +101,7 @@ const stopEdit = (reset = false) => {
         :avatar="avatar"
         :avatar-color="avatarColor"
         :is-edit="isEdit"
-        class="scale-200 mx-auto mb-7"
+        class="mx-auto mb-5 size-20"
         @update:avatar="(file) => setFieldValue('avatar', file)"
       />
       <div class="grid grid-cols-2 gap-4">

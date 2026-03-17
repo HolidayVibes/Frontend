@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { ProfileNavigationTileConst } from "#shared/constants/ProfileNavigationTile.const";
+import { AuthApi } from "#shared/entities/Auth";
+import { Separator } from "@/components/ui/separator";
 
 const profileNavigationTiles = ProfileNavigationTileConst;
 </script>
@@ -16,7 +18,15 @@ const profileNavigationTiles = ProfileNavigationTileConst;
             :tile="item"
           />
           <Separator />
-          <div>Выход</div>
+          <ProfileNavigationTile
+            :tile="{
+              to: '',
+              icon: 'SquareArrowRightIcon',
+              title: 'Выход',
+            }"
+            class="text-primary cursor-pointer"
+            @click.stop="AuthApi.logout()"
+          />
         </div>
         <slot></slot>
       </div>

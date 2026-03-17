@@ -38,33 +38,31 @@ onUnmounted(() => {
 </script>
 
 <template>
-  <div class="relative w-fit">
+  <div class="relative w-fit size-8">
     <Avatar
       :class="[
-        'cursor-pointer',
-        isEdit && 'opacity-80 hover:opacity-60 transition-opacity',
+        'cursor-pointer transition-opacity size-full',
+        isEdit && 'hover:opacity-60',
       ]"
       @click="onAvatarClick"
     >
       <AvatarImage :src="previewUrl ?? avatar" />
       <AvatarFallback
         :style="{ backgroundColor: avatarColor }"
-        class="flex justify-center items-center"
+        class="flex items-center justify-center"
       >
-        <div class="text-center font-semibold text-lg">
+        <span class="text-center text-lg font-semibold">
           {{ avatar }}
-        </div>
+        </span>
       </AvatarFallback>
     </Avatar>
 
     <div
       v-if="isEdit"
-      class="pointer-events-none absolute inset-0 flex items-center justify-center rounded-full"
+      aria-hidden="true"
+      class="pointer-events-none absolute inset-0 flex items-center justify-center rounded-full bg-black/30"
     >
-      <MyIcon
-        icon-name="PencilIcon"
-        class="h-4 w-4 text-white drop-shadow text-primary"
-      />
+      <MyIcon icon-name="PencilIcon" class="h-4 w-4 text-white" />
     </div>
 
     <input

@@ -67,8 +67,5 @@ useHead({ title: "Музыка и фильмы - Snow Vibe" });
       <h2>Праздничные хиты</h2>
       <MediaMusic />
     </div>
-    <div class=""></div>
   </div>
 </template>
-
-<style scoped lang="scss"></style>

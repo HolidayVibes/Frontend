@@ -15,7 +15,7 @@ const { entertainment } = defineProps<{
     </div>
     <div class="grid gap-3">
       <div class="flex justify-between">
-        <div class="">
+        <div>
           {{ entertainment.name }}
         </div>
         <MyIcon :icon-name="entertainment.icon" class="text-gray-500" />

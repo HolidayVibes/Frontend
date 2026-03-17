@@ -61,7 +61,7 @@ ref<IEntertainment[]>(EntertainmentsConst);
       </div>
     </section>
     <section class="flex flex-col gap-5">
-      <div class="">
+      <div>
         <h2 class="text-4xl font-bold mb-3">Праздничные развлечения</h2>
         <div class="secondary-text">
           Все, что нужно для идеального праздника, собрано в одном месте.
@@ -112,5 +112,3 @@ ref<IEntertainment[]>(EntertainmentsConst);
     </section>
   </main>
 </template>
-
-<style scoped lang="scss"></style>
