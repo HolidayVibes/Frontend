@@ -13,6 +13,7 @@ export async function login(
 
     return { error: null };
   } catch (error: unknown) {
+    console.log(error);
     if (error instanceof FetchError) {
       return { error };
     }
@@ -69,10 +70,6 @@ export async function logout() {
       url: AuthConst.BASE_URL + "/logout",
       method: "POST",
     });
-
-    useUserStore().logout();
-
-    return { error: null };
   } catch (error: unknown) {
     if (error instanceof FetchError) {
       return { error };
@@ -82,4 +79,12 @@ export async function logout() {
       error: new FetchError("Ошибка выхода"),
     };
   }
+
+  clearNuxtData("user-me");
+
+  useUserStore().logout();
+
+  await navigateTo("/", { replace: true });
+
+  return { error: null };
 }

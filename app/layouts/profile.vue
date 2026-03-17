@@ -4,6 +4,10 @@ import { AuthApi } from "#shared/entities/Auth";
 import { Separator } from "@/components/ui/separator";
 
 const profileNavigationTiles = ProfileNavigationTileConst;
+
+const logout = () => {
+  AuthApi.logout();
+};
 </script>
 
 <template>
@@ -25,7 +29,7 @@ const profileNavigationTiles = ProfileNavigationTileConst;
               title: 'Выход',
             }"
             class="text-primary cursor-pointer"
-            @click.stop="AuthApi.logout()"
+            @click.stop="logout"
           />
         </div>
         <slot></slot>

@@ -2,6 +2,7 @@
 definePageMeta({
   name: "profile",
   layout: "profile",
+  middleware: ["auth"],
 });
 useHead({
   title: "Профиль - Holiday Vibes",
