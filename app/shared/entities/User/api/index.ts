@@ -1,4 +1,5 @@
-import { type IUser, UserConst, UserModels } from "..";
+import type { UserModels, type IUser, UserConst } from "..";
+
 import { FetchError } from "ofetch";
 
 export async function me() {

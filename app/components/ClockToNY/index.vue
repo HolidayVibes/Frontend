@@ -27,12 +27,12 @@ onUnmounted(() => {
 
 <template>
   <div class="flex gap-2 sm:gap-5 text-center items-center max-sm:flex-col">
-    <ClockToNYNumber :NYNumber="days" NumberName="дней" />
+    <ClockToNYNumber :new-year-number="days" number-name="дней" />
     <div class="text-gray-400/50 text-3xl mb-[38px] max-sm:hidden">:</div>
-    <ClockToNYNumber :NYNumber="hours" NumberName="часов" />
+    <ClockToNYNumber :new-year-number="hours" number-name="часов" />
     <div class="text-gray-400/50 text-3xl mb-[38px] max-sm:hidden">:</div>
-    <ClockToNYNumber :NYNumber="minutes" NumberName="минут" />
+    <ClockToNYNumber :new-year-number="minutes" number-name="минут" />
     <div class="text-gray-400/50 text-3xl mb-[38px] max-sm:hidden">:</div>
-    <ClockToNYNumber :NYNumber="seconds" NumberName="секунд" />
+    <ClockToNYNumber :new-year-number="seconds" number-name="секунд" />
   </div>
 </template>

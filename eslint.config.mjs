@@ -25,7 +25,7 @@ export default withNuxt([
       ".vscode",
       ".idea",
       ".nuxt",
-      "components/ui",
+      "app/components/ui/**",
       "eslint.config.js",
     ],
   },
@@ -74,7 +74,7 @@ export default withNuxt([
     rules: {
       "@typescript-eslint/explicit-module-boundary-types": "off",
       "@typescript-eslint/strict-boolean-expressions": "off",
-      "@typescript-eslint/consistent-type-imports": "warn"
+      "@typescript-eslint/consistent-type-imports": "warn",
     },
   },
 

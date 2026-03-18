@@ -82,7 +82,7 @@ const switchMode = (mode: AuthModalEnum) => {
     <ModalsAuth
       v-model:is-modal-open="isOpen"
       :modal-type="modalType ?? AuthModalEnum.LOGIN"
-      @switchMode="switchMode"
+      @switch-mode="switchMode"
     />
   </div>
 </template>

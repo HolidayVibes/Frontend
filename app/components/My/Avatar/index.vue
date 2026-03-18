@@ -2,12 +2,17 @@
 import { cn } from "@/lib/utils";
 import { Avatar } from "@/components/ui/avatar";
 
-const { isEdit, avatar, ...props } = defineProps<{
-  avatar: string;
-  avatarColor: string;
-  isEdit?: boolean;
-  class?: string;
-}>();
+const { avatar, avatarColor, isEdit, ...props } = withDefaults(
+  defineProps<{
+    avatar: string;
+    avatarColor: string;
+    isEdit?: boolean;
+    class?: string;
+  }>(),
+  {
+    class: "",
+  },
+);
 
 const emit = defineEmits<{
   "update:avatar": [file: File];
