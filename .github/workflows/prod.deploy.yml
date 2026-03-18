@@ -31,7 +31,7 @@ jobs:
             else
               cd /projects/holiday-vibes/Frontend
               git reset --hard
-              git pull origin main
+              git pull origin master
             fi
 
             cd /projects/holiday-vibes/Frontend
