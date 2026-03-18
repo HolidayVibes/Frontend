@@ -1,0 +1,40 @@
+name: Holiday-Vibes frontend deploy workflow
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  deploy:
+    name: Deploy Frontend to prod
+    runs-on: ubuntu-24.04
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Install SSH client
+        run: sudo apt-get install -y openssh-client
+
+      - name: Add SSH private key
+        run: |
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > private_key
+          chmod 600 private_key
+
+      - name: Deploy via SSH
+        run: |
+          ssh -o StrictHostKeyChecking=no -i private_key ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} <<'EOF'
+            if [ ! -d "/projects/holiday-vibes/Frontend" ]; then
+              git clone --branch main git@github.com:HolidayVibes/Frontend.git /projects/holiday-vibes/Frontend
+            else
+              cd /projects/holiday-vibes/Frontend
+              git reset --hard
+              git pull origin main
+            fi
+
+            cd /projects/holiday-vibes/Frontend
+            docker compose down
+            docker compose up -d --build
+          EOF
