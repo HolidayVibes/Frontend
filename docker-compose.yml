@@ -1,0 +1,14 @@
+services:
+  frontend:
+    build: .
+    expose:
+      - "3000"
+    env_file:
+      - .env
+    networks:
+      - holiday-vibes
+    restart: unless-stopped
+
+networks:
+  holiday-vibes:
+    external: true
