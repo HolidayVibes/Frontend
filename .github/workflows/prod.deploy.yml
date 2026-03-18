@@ -27,7 +27,7 @@ jobs:
         run: |
           ssh -o StrictHostKeyChecking=no -i private_key ${{ secrets.SSH_USER }}@${{ secrets.SERVER_IP }} <<'EOF'
             if [ ! -d "/projects/holiday-vibes/Frontend" ]; then
-              git clone --branch main git@github.com:HolidayVibes/Frontend.git /projects/holiday-vibes/Frontend
+              git clone --branch master git@github.com:HolidayVibes/Frontend.git /projects/holiday-vibes/Frontend
             else
               cd /projects/holiday-vibes/Frontend
               git reset --hard
