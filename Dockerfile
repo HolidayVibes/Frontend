@@ -8,6 +8,7 @@ RUN npm ci
 
 COPY . .
 
+RUN npx nuxt prepare
 RUN npx eslint . --cache --max-warnings=0
 
 RUN npm run build
