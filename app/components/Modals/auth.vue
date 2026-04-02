@@ -70,7 +70,6 @@ const login = async (values: AuthModel.LoginPayload) => {
     toast.error(error.message);
     return;
   }
-
   await UserApi.me();
   isModalOpen.value = false;
 };
