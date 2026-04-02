@@ -1,4 +1,4 @@
-import type { MusicModels, type IMusic, MusicConsts } from "..";
+import { type MusicModels, type IMusic, MusicConsts } from "..";
 
 import type {
   IPagination,
