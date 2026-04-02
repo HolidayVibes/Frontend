@@ -6,7 +6,7 @@ definePageMeta({
   name: "media",
 });
 
-useHead({ title: "Музыка и фильмы - Snow Vibe" });
+useHead({ title: "Музыка и фильмы - Holiday Vibes" });
 </script>
 
 <template>
