@@ -2,7 +2,7 @@
 import { cn } from "@/lib/utils";
 import { Avatar } from "@/components/ui/avatar";
 
-const { avatar, avatarColor, isEdit, ...props } = withDefaults(
+const props = withDefaults(
   defineProps<{
     avatar: string;
     avatarColor: string;
@@ -22,7 +22,7 @@ const fileInputRef = ref<HTMLInputElement | null>(null);
 const previewUrl = ref<string | null>(null);
 
 const onAvatarClick = () => {
-  if (isEdit) {
+  if (props.isEdit) {
     fileInputRef.value?.click();
   }
 };
