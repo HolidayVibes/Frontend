@@ -1,4 +1,4 @@
-import { UserModels, type IUser, UserConst } from "..";
+import { type UserModels, type IUser, UserConst } from "..";
 
 import { FetchError } from "ofetch";
 
